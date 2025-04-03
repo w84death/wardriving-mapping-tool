@@ -1,0 +1,114 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    height: 100%;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    display: flex;
+    height: 100%;
+}
+
+.sidebar {
+    width: 300px;
+    padding: 15px;
+    background: #f5f5f5;
+    overflow-y: auto;
+    height: 100%;
+}
+
+#map {
+    flex: 1;
+    height: 100%;
+}
+
+h1 {
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+h2 {
+    font-size: 16px;
+    margin: 10px 0;
+}
+
+.form-group {
+    margin-bottom: 10px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+textarea {
+    height: 80px;
+    resize: vertical;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+button {
+    padding: 8px 12px;
+    background: #4CAF50;
+    border: none;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #45a049;
+}
+
+#devices-list {
+    list-style: none;
+    margin-top: 10px;
+}
+
+.device-item {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    cursor: pointer;
+}
+
+.device-item:hover {
+    background: #eaeaea;
+}
+
+.export-controls {
+    margin-top: 15px;
+    display: flex;
+    gap: 10px;
+}
+
+.device-info-popup .device-type {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.device-info-popup .device-data {
+    white-space: pre-wrap;
+    font-family: monospace;
+    background: #f0f0f0;
+    padding: 5px;
+    margin-top: 5px;
+    font-size: 12px;
+}

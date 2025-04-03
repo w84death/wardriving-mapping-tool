@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wardriving Mapping Tool</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <h1>Wardriving Mapper</h1>
+            
+            <div class="device-controls">
+                <h2>Add New Device</h2>
+                <form id="device-form">
+                    <div class="form-group">
+                        <label for="name">Name:</label>
+                        <input type="text" id="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="deviceType">Device Type:</label>
+                        <input type="text" id="deviceType" placeholder="e.g. EM4100" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="information">Information:</label>
+                        <textarea id="information" placeholder="Default keys, vulnerabilities, etc."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="latitude">Latitude:</label>
+                        <input type="number" id="latitude" step="0.000001" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="longitude">Longitude:</label>
+                        <input type="number" id="longitude" step="0.000001" required>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" id="add-device">Add Device</button>
+                        <button type="button" id="use-current-location">Use Current Location</button>
+                    </div>
+                </form>
+            </div>
+            
+            <div class="device-list">
+                <h2>Devices</h2>
+                <ul id="devices-list"></ul>
+                <div class="export-controls">
+                    <button id="export-json">Export JSON</button>
+                    <button id="import-json">Import JSON</button>
+                    <input type="file" id="import-file" accept=".json" style="display:none;">
+                </div>
+            </div>
+        </div>
+        
+        <div id="map"></div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
