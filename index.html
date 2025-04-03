@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="cyberpunk-theme">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,14 +7,21 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">
+        <div id="sidebar-toggle">
+            <i class="fas fa-chevron-left"></i>
+        </div>
+        
         <div class="sidebar">
-            <h1>Wardriving Mapper</h1>
+            <div class="sidebar-header">
+                <h1><i class="fas fa-satellite-dish"></i> W4rDriving M4pper</h1>
+            </div>
             
             <div class="device-controls">
-                <h2>Add New Device</h2>
+                <h2><i class="fas fa-plus-circle"></i> Add New Device</h2>
                 <form id="device-form">
                     <div class="form-group">
                         <label for="name">Name:</label>
@@ -76,11 +83,11 @@
             </div>
             
             <div class="device-list">
-                <h2>Devices</h2>
+                <h2><i class="fas fa-list"></i> Devices</h2>
                 <ul id="devices-list"></ul>
                 <div class="export-controls">
-                    <button id="export-json">Export JSON</button>
-                    <button id="import-json">Import JSON</button>
+                    <button id="export-json"><i class="fas fa-download"></i> Export</button>
+                    <button id="import-json"><i class="fas fa-upload"></i> Import</button>
                     <input type="file" id="import-file" accept=".json" style="display:none;">
                 </div>
             </div>

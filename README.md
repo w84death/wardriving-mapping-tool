@@ -1,15 +1,17 @@
-# Wardriving Mapping Tool
+# W4rDriving M4pping T00l
 
-A lightweight, browser-based application for mapping and managing vulnerable devices discovered during wardriving activities. This tool allows security researchers to document, visualize, and share information about potentially vulnerable devices on a map interface.
+A lightweight, browser-based application for mapping and managing vulnerable devices discovered during wardriving activities. This tool allows security researchers to document, visualize, and share information about potentially vulnerable devices with a cyberpunk-inspired interface.
 
 ![Wardriving Mapping Tool Screenshot](screenshots/preview.png)
 
 ## 🚀 Features
 
-- **Interactive Map**: Visualize device locations on an OpenStreetMap interface
+- **Cyberpunk Interface**: Dark mode UI with neon accents and minimalist design
+- **Interactive Map**: Visualize device locations on a dark-themed map
+- **Collapsible Sidebar**: Toggle the interface to maximize map view
+- **Custom Icons**: Choose from different marker icons with neon glow effects
 - **Device Management**: Add, edit, and delete device entries with custom information
 - **Location Tools**: Capture coordinates by clicking on the map or using your current location
-- **Custom Icons**: Choose from different marker icons (blue/red/orange/green pins, WiFi, gate) to categorize your findings
 - **Data Persistence**: All data is stored in the browser's localStorage
 - **Import/Export**: Share your findings by exporting to JSON or import data from other sources
 - **Responsive Interface**: Works on desktop and mobile devices

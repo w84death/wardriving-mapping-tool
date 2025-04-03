@@ -14,40 +14,40 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Initialize custom icons
 function initIcons() {
-    // Define custom icons for different types
+    // Define custom icons for different types with cyberpunk styling
     customIcons = {
         blue: L.divIcon({
-            html: '<i class="fa fa-map-marker" style="color: blue; font-size: 24px;"></i>',
+            html: '<i class="fa fa-map-marker" style="color: #00b4d8; font-size: 24px; text-shadow: 0 0 5px #00b4d8;"></i>',
             className: 'custom-map-icon',
             iconSize: [24, 24],
             iconAnchor: [12, 24],
         }),
         red: L.divIcon({
-            html: '<i class="fa fa-map-marker" style="color: red; font-size: 24px;"></i>',
+            html: '<i class="fa fa-map-marker" style="color: #f72585; font-size: 24px; text-shadow: 0 0 5px #f72585;"></i>',
             className: 'custom-map-icon',
             iconSize: [24, 24],
             iconAnchor: [12, 24],
         }),
         orange: L.divIcon({
-            html: '<i class="fa fa-map-marker" style="color: orange; font-size: 24px;"></i>',
+            html: '<i class="fa fa-map-marker" style="color: #ff9e00; font-size: 24px; text-shadow: 0 0 5px #ff9e00;"></i>',
             className: 'custom-map-icon',
             iconSize: [24, 24],
             iconAnchor: [12, 24],
         }),
         green: L.divIcon({
-            html: '<i class="fa fa-map-marker" style="color: green; font-size: 24px;"></i>',
+            html: '<i class="fa fa-map-marker" style="color: #39ff14; font-size: 24px; text-shadow: 0 0 5px #39ff14;"></i>',
             className: 'custom-map-icon',
             iconSize: [24, 24],
             iconAnchor: [12, 24],
         }),
         wifi: L.divIcon({
-            html: '<i class="fa fa-wifi" style="color: blue; font-size: 20px;"></i>',
+            html: '<i class="fa fa-wifi" style="color: #00b4d8; font-size: 20px; text-shadow: 0 0 5px #00b4d8;"></i>',
             className: 'custom-map-icon',
             iconSize: [20, 20],
             iconAnchor: [10, 10],
         }),
         gate: L.divIcon({
-            html: '<i class="fa fa-door-open" style="color: brown; font-size: 20px;"></i>',
+            html: '<i class="fa fa-door-open" style="color: #ff9e00; font-size: 20px; text-shadow: 0 0 5px #ff9e00;"></i>',
             className: 'custom-map-icon',
             iconSize: [20, 20],
             iconAnchor: [10, 10],
@@ -58,19 +58,26 @@ function initIcons() {
     selectIcon('red');
 }
 
-// Initialize the map
+// Initialize the map with cyberpunk styling
 function initMap() {
     map = L.map('map').setView([0, 0], 2);
     
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19,
-        attribution: '© OpenStreetMap contributors'
+    // Use a dark themed map style
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+        subdomains: 'abcd',
+        maxZoom: 19
     }).addTo(map);
 
     map.on('click', (e) => {
         document.getElementById('latitude').value = e.latlng.lat.toFixed(6);
         document.getElementById('longitude').value = e.latlng.lng.toFixed(6);
     });
+}
+
+// Toggle sidebar visibility
+function toggleSidebar() {
+    document.querySelector('.container').classList.toggle('sidebar-hidden');
 }
 
 // Load devices from JSON file or localStorage
@@ -228,6 +235,9 @@ function deleteDevice(id) {
 
 // Set up event listeners
 function setupEventListeners() {
+    // Sidebar toggle
+    document.getElementById('sidebar-toggle').addEventListener('click', toggleSidebar);
+    
     // Icon selection event listeners
     document.querySelectorAll('.icon-option').forEach(option => {
         option.addEventListener('click', () => {
