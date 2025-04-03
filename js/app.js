@@ -2,13 +2,61 @@ let map;
 let devices = [];
 let currentMarkers = [];
 let editingDeviceId = null;
+let customIcons = {};
 
 // Initialize the application
 document.addEventListener('DOMContentLoaded', () => {
     initMap();
+    initIcons();
     loadDevices();
     setupEventListeners();
 });
+
+// Initialize custom icons
+function initIcons() {
+    // Define custom icons for different types
+    customIcons = {
+        blue: L.divIcon({
+            html: '<i class="fa fa-map-marker" style="color: blue; font-size: 24px;"></i>',
+            className: 'custom-map-icon',
+            iconSize: [24, 24],
+            iconAnchor: [12, 24],
+        }),
+        red: L.divIcon({
+            html: '<i class="fa fa-map-marker" style="color: red; font-size: 24px;"></i>',
+            className: 'custom-map-icon',
+            iconSize: [24, 24],
+            iconAnchor: [12, 24],
+        }),
+        orange: L.divIcon({
+            html: '<i class="fa fa-map-marker" style="color: orange; font-size: 24px;"></i>',
+            className: 'custom-map-icon',
+            iconSize: [24, 24],
+            iconAnchor: [12, 24],
+        }),
+        green: L.divIcon({
+            html: '<i class="fa fa-map-marker" style="color: green; font-size: 24px;"></i>',
+            className: 'custom-map-icon',
+            iconSize: [24, 24],
+            iconAnchor: [12, 24],
+        }),
+        wifi: L.divIcon({
+            html: '<i class="fa fa-wifi" style="color: blue; font-size: 20px;"></i>',
+            className: 'custom-map-icon',
+            iconSize: [20, 20],
+            iconAnchor: [10, 10],
+        }),
+        gate: L.divIcon({
+            html: '<i class="fa fa-door-open" style="color: brown; font-size: 20px;"></i>',
+            className: 'custom-map-icon',
+            iconSize: [20, 20],
+            iconAnchor: [10, 10],
+        })
+    };
+    
+    // Set default selected icon
+    selectIcon('red');
+}
 
 // Initialize the map
 function initMap() {
@@ -70,6 +118,21 @@ function renderDevicesList() {
     });
 }
 
+// Select an icon option
+function selectIcon(iconType) {
+    // Reset previous selection
+    document.querySelectorAll('.icon-option').forEach(option => {
+        option.classList.remove('selected');
+    });
+    
+    // Set new selection
+    const selectedOption = document.querySelector(`.icon-option[data-icon="${iconType}"]`);
+    if (selectedOption) {
+        selectedOption.classList.add('selected');
+        document.getElementById('selected-icon').value = iconType;
+    }
+}
+
 // Render devices as markers on the map
 function renderDevicesOnMap() {
     // Clear existing markers
@@ -78,7 +141,11 @@ function renderDevicesOnMap() {
     
     // Add markers for each device
     devices.forEach(device => {
-        const marker = L.marker([device.latitude, device.longitude]).addTo(map);
+        // Use the device's icon type or default to red pin
+        const iconType = device.iconType || 'red';
+        const marker = L.marker([device.latitude, device.longitude], {
+            icon: customIcons[iconType] || customIcons.red
+        }).addTo(map);
         
         marker.bindPopup(`
             <div class="device-info-popup">
@@ -136,6 +203,9 @@ function editDevice(id) {
     document.getElementById('latitude').value = device.latitude;
     document.getElementById('longitude').value = device.longitude;
     
+    // Select the icon
+    selectIcon(device.iconType || 'red');
+    
     editingDeviceId = id;
     
     // Change button text
@@ -158,6 +228,14 @@ function deleteDevice(id) {
 
 // Set up event listeners
 function setupEventListeners() {
+    // Icon selection event listeners
+    document.querySelectorAll('.icon-option').forEach(option => {
+        option.addEventListener('click', () => {
+            const iconType = option.getAttribute('data-icon');
+            selectIcon(iconType);
+        });
+    });
+    
     // Add/edit device form submission
     document.getElementById('device-form').addEventListener('submit', (e) => {
         e.preventDefault();
@@ -167,7 +245,8 @@ function setupEventListeners() {
             deviceType: document.getElementById('deviceType').value,
             information: document.getElementById('information').value,
             latitude: parseFloat(document.getElementById('latitude').value),
-            longitude: parseFloat(document.getElementById('longitude').value)
+            longitude: parseFloat(document.getElementById('longitude').value),
+            iconType: document.getElementById('selected-icon').value
         };
         
         if (editingDeviceId) {
@@ -191,6 +270,8 @@ function setupEventListeners() {
         
         // Reset the form
         document.getElementById('device-form').reset();
+        // Reset icon selection to default (red)
+        selectIcon('red');
     });
     
     // Use current location button

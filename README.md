@@ -9,6 +9,7 @@ A lightweight, browser-based application for mapping and managing vulnerable dev
 - **Interactive Map**: Visualize device locations on an OpenStreetMap interface
 - **Device Management**: Add, edit, and delete device entries with custom information
 - **Location Tools**: Capture coordinates by clicking on the map or using your current location
+- **Custom Icons**: Choose from different marker icons (blue/red/orange/green pins, WiFi, gate) to categorize your findings
 - **Data Persistence**: All data is stored in the browser's localStorage
 - **Import/Export**: Share your findings by exporting to JSON or import data from other sources
 - **Responsive Interface**: Works on desktop and mobile devices
